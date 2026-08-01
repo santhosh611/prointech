@@ -28,7 +28,12 @@ export default function ProductsPage({ onBackToHome, onOpenContact, isEmbedded }
       name: 'School Timetabling System',
       subtitle: 'Academic Scheduling & Constraint Engine',
       category: 'FLAGSHIP PLATFORM',
-      isInternal: true,
+      isInternal: false,
+      link: 'https://classontime.com/',
+      demoCredentials: {
+        username: 'demo',
+        password: 'demo'
+      },
       description: 'An intelligent multi-variable constraint optimization engine for schools, colleges, and university faculties. Automatically generates 100% conflict-free master timetables, balances educator workloads, optimizes room capacities, and publishes schedules in seconds.',
       features: [
         'Automated Multi-Variable Constraint Solver',
@@ -38,7 +43,7 @@ export default function ProductsPage({ onBackToHome, onOpenContact, isEmbedded }
         'PDF, Excel, iCal & SIS API Integration'
       ],
       badge: 'Active Flagship',
-      uiUrl: 'timetabling.proinfocus.com/admin',
+      uiUrl: 'classontime.com',
       mockupType: 'browser',
       image: null,
       stats: [
@@ -386,6 +391,29 @@ export default function ProductsPage({ onBackToHome, onOpenContact, isEmbedded }
                         ))}
                       </div>
                     </div>
+
+                    {item.demoCredentials && (
+                      <div className="mt-6 p-4 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 max-w-md">
+                        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
+                          <ShieldCheck className={`w-4 h-4 ${t.checkColor}`} />
+                          <span>Demo Access Credentials</span>
+                        </div>
+                        <div className="flex flex-wrap gap-4 text-xs font-medium">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-gray-400">Username:</span>
+                            <code className="px-2 py-0.5 rounded bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 font-mono font-bold text-gray-800 dark:text-gray-200">
+                              {item.demoCredentials.username}
+                            </code>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-gray-400">Password:</span>
+                            <code className="px-2 py-0.5 rounded bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 font-mono font-bold text-gray-800 dark:text-gray-200">
+                              {item.demoCredentials.password}
+                            </code>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     {/* App Specific Themed Explore Button */}
                     <div className="mt-8">

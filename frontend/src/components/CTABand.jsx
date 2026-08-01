@@ -64,7 +64,7 @@ export default function CTABand() {
       setStatus({
         loading: false,
         success: false,
-        error: 'Network connection failed. Please verify the backend server is running on port 5000.',
+        error: 'Network connection failed. Please verify the backend server is running on port 5001.',
         inquiryId: null,
       });
     }
