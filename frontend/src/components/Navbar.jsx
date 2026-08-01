@@ -76,6 +76,7 @@ export default function Navbar({ isDarkMode, onToggleDarkMode }) {
       tag: 'Academic Scheduling',
       icon: Calendar,
       internal: true,
+      link: 'https://classontime.com/',
       action: () => handleNavClick('school-timetabling'),
     },
     {
@@ -207,12 +208,8 @@ export default function Navbar({ isDarkMode, onToggleDarkMode }) {
                     <div className="mt-2 max-h-[380px] overflow-y-auto space-y-1.5 pr-1">
                       {navProducts.map((prod, idx) => {
                         const Icon = prod.icon;
-                        return (
-                          <button
-                            key={idx}
-                            onClick={prod.action}
-                            className="w-full text-left p-2.5 rounded-xl hover:bg-red-50/80 dark:hover:bg-neutral-800 border border-transparent hover:border-red-200 dark:hover:border-neutral-700 transition-all group flex items-center justify-between"
-                          >
+                        const content = (
+                          <>
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-neutral-800 text-red-700 dark:text-red-400 flex items-center justify-center shrink-0 group-hover:bg-red-700 group-hover:text-white transition-colors">
                                 <Icon className="w-4 h-4" />
@@ -232,6 +229,31 @@ export default function Navbar({ isDarkMode, onToggleDarkMode }) {
                             ) : (
                               <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-red-600 transition-colors" />
                             )}
+                          </>
+                        );
+
+                        if (prod.link) {
+                          return (
+                            <a
+                              key={idx}
+                              href={prod.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setProductsDropdownOpen(false)}
+                              className="w-full text-left p-2.5 rounded-xl hover:bg-red-50/80 dark:hover:bg-neutral-800 border border-transparent hover:border-red-200 dark:hover:border-neutral-700 transition-all group flex items-center justify-between"
+                            >
+                              {content}
+                            </a>
+                          );
+                        }
+
+                        return (
+                          <button
+                            key={idx}
+                            onClick={prod.action}
+                            className="w-full text-left p-2.5 rounded-xl hover:bg-red-50/80 dark:hover:bg-neutral-800 border border-transparent hover:border-red-200 dark:hover:border-neutral-700 transition-all group flex items-center justify-between"
+                          >
+                            {content}
                           </button>
                         );
                       })}
@@ -340,16 +362,39 @@ export default function Navbar({ isDarkMode, onToggleDarkMode }) {
                   </button>
                 </div>
                 <div className="space-y-1.5">
-                  {navProducts.map((prod, idx) => (
-                    <button
-                      key={idx}
-                      onClick={prod.action}
-                      className="w-full text-left py-2.5 px-3.5 rounded-xl bg-gray-50 dark:bg-neutral-800/80 border border-gray-200/60 dark:border-neutral-700/60 text-xs font-medium text-brand-dark dark:text-white flex items-center justify-between"
-                    >
-                      <span>{prod.name}</span>
-                      <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-                    </button>
-                  ))}
+                  {navProducts.map((prod, idx) => {
+                    const content = (
+                      <>
+                        <span>{prod.name}</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
+                      </>
+                    );
+
+                    if (prod.link) {
+                      return (
+                        <a
+                          key={idx}
+                          href={prod.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="w-full text-left py-2.5 px-3.5 rounded-xl bg-gray-50 dark:bg-neutral-800/80 border border-gray-200/60 dark:border-neutral-700/60 text-xs font-medium text-brand-dark dark:text-white flex items-center justify-between"
+                        >
+                          {content}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <button
+                        key={idx}
+                        onClick={prod.action}
+                        className="w-full text-left py-2.5 px-3.5 rounded-xl bg-gray-50 dark:bg-neutral-800/80 border border-gray-200/60 dark:border-neutral-700/60 text-xs font-medium text-brand-dark dark:text-white flex items-center justify-between"
+                      >
+                        {content}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
